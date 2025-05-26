@@ -19,7 +19,12 @@ import requests
 import tempfile
 # Load environment variables
 load_dotenv()
+import kagglehub
 
+# Download latest version
+path = kagglehub.model_download("goutham1208/heart_disease_prediction/other/default")
+
+print("Path to model files:", path)
 # Configure Google Generative AI with API key
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=GOOGLE_API_KEY)
@@ -90,7 +95,7 @@ def load_models():
     
     # Load vessel segmentation model
     try:
-        models['vessel_model'] = load_model('models/vessel_segmentation_model.keras')
+        models['vessel_model'] = load_model(os.path.join(path, 'models/vessel_segmentation_model.keras'))
         st.success("✅ Vessel segmentation model loaded successfully")
     except Exception as e:
         st.error(f"❌ Error loading vessel segmentation model: {e}")
@@ -127,7 +132,7 @@ def load_models():
     # Load retinal risk model
     try:
         models['retinal_model'] = xgb.XGBClassifier()
-        models['retinal_model'].load_model('models/retinal_cvd_risk_model.json')
+        models['retinal_model'].load_model(os.path.join(path, 'models/retinal_cvd_risk_model.json'))
         st.success("✅ Retinal risk model loaded successfully")
     except Exception as e:
         st.error(f"❌ Error loading retinal risk model: {e}")
@@ -136,7 +141,7 @@ def load_models():
     # Load clinical risk model
     try:
         models['clinical_model'] = xgb.XGBClassifier()
-        models['clinical_model'].load_model('models/heart_failure_clinical_model.json')
+        models['clinical_model'].load_model(os.path.join(path, 'models/heart_failure_clinical_model.json'))
         st.success("✅ Clinical risk model loaded successfully")
     except Exception as e:
         st.error(f"❌ Error loading clinical risk model: {e}")
@@ -144,14 +149,14 @@ def load_models():
     
     # Load scalers
     try:
-        models['retinal_scaler'] = joblib.load('models/feature_scaler.pkl')
+        models['retinal_scaler'] = joblib.load(os.path.join(path, 'models/feature_scaler.pkl'))
         st.success("✅ Retinal feature scaler loaded successfully")
     except Exception as e:
         st.error(f"❌ Error loading retinal feature scaler: {e}")
         models['retinal_scaler'] = None
     
     try:
-        models['clinical_scaler'] = joblib.load('models/clinical_feature_scaler.pkl')
+        models['clinical_scaler'] = joblib.load(os.path.join(path, 'models/clinical_feature_scaler.pkl'))
         st.success("✅ Clinical feature scaler loaded successfully")
     except Exception as e:
         st.error(f"❌ Error loading clinical feature scaler: {e}")

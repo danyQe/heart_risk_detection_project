@@ -11,3 +11,4 @@ google-generativeai
 python-dotenv
 pillow
 joblib
+kagglehub
