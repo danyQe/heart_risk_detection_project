@@ -1,0 +1,13 @@
+numpy
+pandas
+matplotlib
+scikit-image
+scikit-learn
+tensorflow
+xgboost
+streamlit
+opencv-python
+google-generativeai
+python-dotenv
+pillow
+joblib
