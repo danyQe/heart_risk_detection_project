@@ -17,6 +17,10 @@ This project is a Streamlit web application designed for cardiovascular risk ass
 *   **Personalized Recommendations:** Generates actionable advice and lifestyle recommendations using Google's Generative AI based on the risk profile and clinical data.
 *   **Interactive User Interface:** Built with Streamlit for easy interaction and data input.
 
+## Architecture:
+![architecture.png](docs/architecture.png):
+
+   
 ## 🛠️ Technologies Used
 
 *   **Python:** Core programming language.
