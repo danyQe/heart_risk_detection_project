@@ -12,4 +12,5 @@ testData/
 *.html
 *.json
 *.csv
+.env
 dataset/
